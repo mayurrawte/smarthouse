@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Smart Green House</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+
+
+</head>
+<body>
+
+<div class="container-fluid main-container">
+    <div class="col-md-2 col-left">
+        <div class="navbar nav_title" style="font-size: 12px;">Smart Green House</div>
+        <div class="staffprofile">
+            <div class="staffpi"><img src="{% static 'user.png' %}"> </div>
+            <div class="staffpn"><p style="color:#fff;">{{ user }}</p></div>
+        </div>
+        <div>
+            <a href="/slogout" style="color: #fff; text-decoration: none;">Logout</a>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2 dash-area">
+        <div class="col-md-6 dash-options">
+           <h3>Device Id</h3>
+            <p>
+                <span style="font-size: 12px;">
+                {{ device.device_uid }}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-4 dash-options">
+            <h3>Last Update</h3>
+            <p>
+                <span style="font-size: 12px;">
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                    {{  val.timestamp }}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>Temprature</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                    {{  val.temperature }}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>Moisture</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                    {{  val.moisture }}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>Humidity</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                    {{  val.humidity }}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>Heater</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                     {% if val.heater == 1 %}
+                         ON
+                     {% elif val.heater == 0 %}
+                         OFF
+                     {% endif %}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>Fan</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                     {% if val.fan == 1 %}
+                         ON
+                     {% elif val.fan == 0 %}
+                         OFF
+                     {% endif %}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+        <div class="col-md-3 dash-options">
+            <h3>WaterPump</h3>
+            <p>
+                <span>
+                {% for val in devicelog %}
+                {% if forloop.last %}
+                     {% if val.waterpump == 1 %}
+                         ON
+                     {% elif val.waterpump == 0 %}
+                         OFF
+                     {% endif %}
+                {% endif %}
+                {% endfor %}
+            </span><br />
+            </p>
+        </div>
+
+
+
+        <div class="col-md-10 datatable">
+            <div>
+            <table>
+                <tr><th>Timestamp</th><th>Temerature</th><th>Humidity</th><th>Moisture</th></tr>
+                {% for val in devicelog reversed %}
+                <tr><td>{{ val.timestamp }}</td><td>{{ val.temperature }}</td><td>{{  val.humidity}}</td><td>{{  val.moisture}}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

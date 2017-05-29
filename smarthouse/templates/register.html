@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+	<title>SmartHouse</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'generic.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+
+<form action="/register/" method="POST" >
+	<img src="{% static '1.jpg' %}">
+	<p>Smart Green House</p>
+	<input type="text" name="name" placeholder="Your Name" id="name">
+    <input type="email" name="email" placeholder="Your Email" id="email">
+	<input type="submit" value="SUBMIT" id="registerbtn">
+</form>
+
+</body>
+</html>
